@@ -1,0 +1,22 @@
+
+
+
+<html lang="en">
+	<head>
+		<title>race stats</title>
+		<meta charset="utf-8">
+	</head>
+	<body onload="init()">
+		<div>
+			<h1 style="text-align:center;color:black;font-family:Calibri;font-size:400%">COVID-19 Spread in USA</h1>
+		</div>
+		<input type="radio" name="covidtest" checked="checked" value="tot_cases"><label style="font-family:calibri;font-size:16px">Overall Covid Spread </label>
+  <input type="radio" name="covidtest" value="new_case"><label style="font-family:calibri;font-size:16px">New Covid Spread</label>
+  <input type="radio" name="covidtest" value="daily_trend"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
+  <input type="radio" name="covidtest" value="statewise"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
+  <br><br>
+  <input type="button" value="Total Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;Total&quot;)">
+  <input type="button" value="New Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;New&quot;)">
+  <input type="button" value="7 Day Average Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;Avg7day&quot;)">
+ </div>
+ </body></html>

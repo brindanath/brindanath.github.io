@@ -34,7 +34,7 @@ div.tooltip {
  <tr>
    <td>
     <h3>
-        <div id="home">Average wages based on race and gender</div>
+        <div id="home">Homeownership based on race and gender</div>
     </h3>
    </td>
  </tr>
@@ -201,6 +201,9 @@ svg.append("path")
 
 
 
+
+
+
     d3.select("svg")
  .append("text")
  .attr("x", 880)
@@ -208,46 +211,72 @@ svg.append("path")
  .style("font-size", 14)
  .style("font-family","Arial")
  .style("font-weight",2)
- .text("Case Count");
+ .text("Hispanic");
 
  d3.select("svg")
  .append("rect")
  .attr("width", 15)
  .attr("height", 8)
- .attr("fill","#663300")
+ .attr("fill","blue")
  .attr("x",860)
- .attr("y",330);
+ .attr("y",320);
 
 
-
-d3.select("svg")
- .append("line")
- .attr('x1', 965)
- .attr('y1', 165)
- .attr('x2', 965)
- .attr("stroke-width", 2)
- .attr('y2', 15)
- .attr('stroke', 'green')
-
- d3.select("svg")
- .append("line")
- .attr('x1', 930)
- .attr('y1', 190)
- .attr('x2', 965)
- .attr("stroke-width", 2)
- .attr('y2', 165)
- .attr('stroke', 'green')
-
- d3.select("svg")
+    d3.select("svg")
  .append("text")
- .attr("x", 730)
- .attr("y", 195)
- .attr('stroke', 'black')
- .style("font-size", 16)
- .style("font-family","Consolas")
- .style("letter-spacing",2)
+ .attr("x", 880)
+ .attr("y", 270)
+ .style("font-size", 14)
+ .style("font-family","Arial")
  .style("font-weight",2)
- .text("$23,653 difference ");
+ .text("White");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","red")
+ .attr("x",860)
+ .attr("y",260);
+
+    d3.select("svg")
+ .append("text")
+ .attr("x", 880)
+ .attr("y", 240)
+ .style("font-size", 14)
+ .style("font-family","Arial")
+ .style("font-weight",2)
+ .text("Total");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","black")
+ .attr("x",860)
+ .attr("y",230);
+
+
+    d3.select("svg")
+ .append("text")
+ .attr("x", 880)
+ .attr("y", 300)
+ .style("font-size", 14)
+ .style("font-family","Arial")
+ .style("font-weight",2)
+ .text("Black");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","purple")
+ .attr("x",860)
+ .attr("y",290);
+
+
+
+
 
 
 })

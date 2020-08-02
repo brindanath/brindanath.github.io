@@ -206,22 +206,75 @@ svg.append("path")
  .style("font-size", 14)
  .style("font-family","Arial")
  .style("font-weight",2)
- .text("Case Count");
+ .text("White_Women");
 
  d3.select("svg")
  .append("rect")
  .attr("width", 15)
  .attr("height", 8)
- .attr("fill","#663300")
+ .attr("fill","blue")
  .attr("x",860)
- .attr("y",330);
+ .attr("y",320);
+
+
+    d3.select("svg")
+ .append("text")
+ .attr("x", 880)
+ .attr("y", 270)
+ .style("font-size", 14)
+ .style("font-family","Arial")
+ .style("font-weight",2)
+ .text("White_Men");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","red")
+ .attr("x",860)
+ .attr("y",260);
+
+    d3.select("svg")
+ .append("text")
+ .attr("x", 880)
+ .attr("y", 240)
+ .style("font-size", 14)
+ .style("font-family","Arial")
+ .style("font-weight",2)
+ .text("Black_Women");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","black")
+ .attr("x",860)
+ .attr("y",230);
+
+
+    d3.select("svg")
+ .append("text")
+ .attr("x", 880)
+ .attr("y", 300)
+ .style("font-size", 14)
+ .style("font-family","Arial")
+ .style("font-weight",2)
+ .text("Black_Men");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","purple")
+ .attr("x",860)
+ .attr("y",290);
 
 
 
 d3.select("svg")
  .append("line")
  .attr('x1', 965)
- .attr('y1', 165)
+ .attr('y1', 155)
  .attr('x2', 965)
  .attr("stroke-width", 2)
  .attr('y2', 15)
@@ -233,7 +286,7 @@ d3.select("svg")
  .attr('y1', 190)
  .attr('x2', 965)
  .attr("stroke-width", 2)
- .attr('y2', 165)
+ .attr('y2', 155)
  .attr('stroke', 'green')
 
  d3.select("svg")

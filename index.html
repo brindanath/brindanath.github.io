@@ -34,29 +34,27 @@ div.tooltip {
  <tr>
    <td>
     <h3>
-        <div id="home_page">Average wages based on race and gender</div>
+        <div id="home">Average wages based on race and gender</div>
     </h3>
    </td>
  </tr>
 
  <tr>
   <td>
-   <div id="home_page_info">
-  <p>Next chart displays 3 key metrics where we can see hif New York was able to switch from being the epicenter of the pandemic to be a city with the lowest rates in the country.</p>
-  <p>Start of the outbreak in New York = February 29, 2020 according to NYC Health Department.</p>
-  <p>Data displayed is from March to July - 2020</p>
+   <div id="home1">
+  <p>America is the land of the equality.</p>
+  <p>This dashboard will check just how equal Americans actually are.</p>
+  
 
 
 <br>
 <div>
   <input type="radio" name="White_Men vs Black_Men"  value="tot_cases"  onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">White Male vs Black Male </label>
-  <input type="radio" name="covidtest" value="new_case" onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">New Covid Spread</label>
-  <input type="radio" name="covidtest" value="daily_trend"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
-  <input type="radio" name="covidtest" value="statewise"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
+  <input type="radio" name="White_Women vs Black_Women" value="new_case" onclick="window.location.href='https://brindanath.github.io/page2.html';"><label style="font-family:calibri;font-size:16px">New Covid Spread</label>
+  <input type="radio" name="Men vs Women" value="daily_trend" onclick="window.location.href='https://brindanath.github.io/page3.html';"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
+  <input type="radio" name="All Races vs All Gender" value="statewise" onclick="window.location.href='https://brindanath.github.io/page4.html';"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
   <br><br>
-  <input type="button" value="Total Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.location.href='https://brindanath.github.io/ind2.html';">
-  <input type="button" value="New Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.location.href='https://brindanath.github.io/ind2.html';">
-  <input type="button" value="7 Day Average Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;Avg7day&quot;)">
+  
  </div>
  <br>
 
@@ -194,7 +192,7 @@ svg.append("path")
  .attr("height", 8)
  .attr("fill","#663300")
  .attr("x",860)
- .attr("y",22);
+ .attr("y",330);
 
 
 })

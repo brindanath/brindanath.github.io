@@ -157,7 +157,7 @@ var t1 = svg.append("path")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
       .x(function(d) { return xScale(d.Year) })
-      .y(function(d) { return yScale(d.White_Women) })      
+      .y(function(d) { return yScale(d.Blackl_Men) })      
 )
 
 
@@ -170,11 +170,35 @@ svg.append("path")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
       .x(function(d) { return xScale(d.Year) })
-      .y(function(d) { return yScale(d.Black_Women) })
+      .y(function(d) { return yScale(d.Blackl_Women) })
       
 )
 
-    
+ 
+var t2 = svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "cyan")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.Whitel_Men) })      
+)
+
+
+
+//line for HOSPITALIZED_COUNT
+svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "purple")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.White_Women) })
+      
+)
+
 
 
     d3.select("svg")

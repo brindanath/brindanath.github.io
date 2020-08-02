@@ -1,0 +1,258 @@
+<html><head>
+<meta charset="utf-8">
+<title>THIS IS AMERICA</title>
+<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+<style>
+  
+div.tooltip { 
+    position: absolute;     
+    text-align: center;     
+    width: 60px;          
+    height: 28px;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: lightsteelblue; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;     
+}
+
+
+</style>
+</head>
+<body>
+
+<table>
+ <tbody><tr>
+  <td>
+    <h1>
+  <div id="title">THIS IS AMERICA</div>
+    </h1></td>
+   
+ </tr>
+ <tr>
+   <td>
+    <h3>
+        <div id="home">Average wages based on race and gender</div>
+    </h3>
+   </td>
+ </tr>
+
+ <tr>
+  <td>
+   <div id="home1">
+  <p>America is the land of the equality.</p>
+  <p>This dashboard will check just how equal Americans actually are.</p>
+  
+
+
+<br>
+<div>
+  <input type="radio" name="White_Men vs Black_Men"    onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">White Male vs Black Male </label>
+  <input type="radio" name="White_Women vs Black_Women" onclick="window.location.href='https://brindanath.github.io/page2.html';"><label style="font-family:calibri;font-size:16px">White_Women vs Black_Women</label>
+  <input type="radio" name="Men vs Women"  onclick="window.location.href='https://brindanath.github.io/page3.html';"><label style="font-family:calibri;font-size:16px">Men vs Women</label>
+  <input type="radio" name="All Races vs All Gender"  onclick="window.location.href='https://brindanath.github.io/page4.html';"><label style="font-family:calibri;font-size:16px">All Races vs All Gender</label>
+  <br><br>
+  
+ </div>
+ <br>
+
+
+
+  </div>
+  </td>
+ </tr>
+ 
+ <tr>
+    <td><div id="area_chart1_title"></div></td>
+ </tr>
+ <tr>
+    <td><div id="display_chart_1"></div></td>
+ </tr>
+ <tr>
+  <td>
+   <div id="scene1_next_page">
+  <button onclick="window.location.href='https://brindanath.github.io/ind2.html';">
+      Next Page
+    </button>
+    <button onclick="changeColor('red');">
+      Next Page
+    </button>
+   </div>
+   </td>
+ </tr>
+</tbody></table>
+
+
+<script>
+
+
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60};
+var width = 1000 - margin.left - margin.right;
+var height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#display_chart_1")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+const data = d3.csv("https://raw.githubusercontent.com/brindanath/brindanath.github.io/master/homeowner.csv",
+
+//format data
+function(d){
+    return { Year : +d.Year, Total: +d.Total, White : +d.White, Black : +d.Black, Hispanic : +d.Hispanic}
+},
+
+function(data) {
+
+//setup X Scale
+var xScale = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.Year; }))
+      .range([ 0, width ]);
+
+//setup X Axis
+var xAxis = d3.axisBottom(xScale)
+    //.ticks(20)
+    .tickFormat(d3.format('d'))
+    .scale(xScale);
+
+//draw X axis
+svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+
+//setup Y Scale
+var yScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return Math.max(d.Total, d.White, d.Black, d.Hispanic); })])
+    .range([ height, 0 ]);
+
+//setup Y axis
+var yAxis = d3.axisLeft(yScale);
+
+//draw Y axis
+svg.append("g")
+     .call(yAxis);
+
+//*******************************
+//draw the lines
+//*******************************
+
+
+
+
+
+var t1 = svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "purple")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.Black) })      
+)
+
+
+
+//line for HOSPITALIZED_COUNT
+svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "black")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.Total) })
+      
+)
+
+ 
+var t2 = svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.White) })      
+)
+
+
+
+//line for HOSPITALIZED_COUNT
+svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "blue")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.Hispanic) })
+      
+)
+
+
+
+    d3.select("svg")
+ .append("text")
+ .attr("x", 880)
+ .attr("y", 330)
+ .style("font-size", 14)
+ .style("font-family","Arial")
+ .style("font-weight",2)
+ .text("Case Count");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","#663300")
+ .attr("x",860)
+ .attr("y",330);
+
+
+
+d3.select("svg")
+ .append("line")
+ .attr('x1', 965)
+ .attr('y1', 165)
+ .attr('x2', 965)
+ .attr("stroke-width", 2)
+ .attr('y2', 15)
+ .attr('stroke', 'green')
+
+ d3.select("svg")
+ .append("line")
+ .attr('x1', 930)
+ .attr('y1', 190)
+ .attr('x2', 965)
+ .attr("stroke-width", 2)
+ .attr('y2', 165)
+ .attr('stroke', 'green')
+
+ d3.select("svg")
+ .append("text")
+ .attr("x", 730)
+ .attr("y", 195)
+ .attr('stroke', 'black')
+ .style("font-size", 16)
+ .style("font-family","Consolas")
+ .style("letter-spacing",2)
+ .style("font-weight",2)
+ .text("$23,653 difference ");
+
+
+})
+
+</script>
+
+
+</body></html>

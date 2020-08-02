@@ -73,10 +73,10 @@ div.tooltip {
  <tr>
   <td>
    <div id="scene1_next_page">
-  <button onclick="window.location.href='https://brindanath.github.io/index1.html';">
+  <button onclick="window.location.href='https://brindanath.github.io/ind2.html';">
       Previous Page
     </button>
-    <button onclick="window.location.href='https://brindanath.github.io/thirdslide.html';">
+    <button onclick="window.location.href='https://brindanath.github.io/ind2.html';">
       Next Page
     </button>
    </div>
@@ -150,19 +150,6 @@ svg.append("g")
 
 
 
-var t1 = svg.append("path")
-    .datum(data)
-    .attr("fill", "none")
-    .attr("stroke", "purple")
-    .attr("stroke-width", 4)
-    .attr("d", d3.line()
-      .x(function(d) { return xScale(d.Year) })
-      .y(function(d) { return yScale(d.Black) })      
-)
-
-
-
-
 
 
  
@@ -178,6 +165,17 @@ var t2 = svg.append("path")
 
 
 
+//line for HOSPITALIZED_COUNT
+svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "blue")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.Hispanic) })
+      
+)
 
 
 
@@ -206,6 +204,7 @@ var t2 = svg.append("path")
 
 
 
+
     d3.select("svg")
  .append("text")
  .attr("x", 880)
@@ -213,13 +212,13 @@ var t2 = svg.append("path")
  .style("font-size", 14)
  .style("font-family","Arial")
  .style("font-weight",2)
- .text("Black");
+ .text("Hispanic");
 
  d3.select("svg")
  .append("rect")
  .attr("width", 15)
  .attr("height", 8)
- .attr("fill","purple")
+ .attr("fill","blue")
  .attr("x",860)
  .attr("y",290);
 

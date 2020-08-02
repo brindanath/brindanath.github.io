@@ -1,0 +1,66 @@
+
+
+
+<html lang="en">
+	<head>
+		<title>race stats</title>
+		<meta charset="utf-8">
+	</head>
+	<body onload="init()">
+		<div>
+			<h1 style="text-align:center;color:black;font-family:Calibri;font-size:400%">COVID-19 Spread in USA</h1>
+		</div>
+		<input type="radio" name="covidtest" checked="checked" value="tot_cases"><label style="font-family:calibri;font-size:16px">Overall Covid Spread </label>
+  <input type="radio" name="covidtest" value="new_case"><label style="font-family:calibri;font-size:16px">New Covid Spread</label>
+  <input type="radio" name="covidtest" value="daily_trend"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
+  <input type="radio" name="covidtest" value="statewise"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
+  <input type="radio" name="covidtest" value="daily_trend"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
+  <input type="radio" name="covidtest" value="statewise"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
+  <br><br>
+  <input type="button" value="Total Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;Total&quot;)">
+  <input type="button" value="New Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;New&quot;)">
+  <input type="button" value="7 Day Average Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;Avg7day&quot;)">
+  <input type="button" value="New Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;New&quot;)">
+  <input type="button" value="7 Day Average Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;Avg7day&quot;)">
+ </div>
+<div>
+	<table>
+ <tbody><tr>
+  <td>
+    <h1>
+	<div id="title_narrative">New York - Covid 2019</div>
+    </h1></td>
+   
+ </tr>
+ <tr>
+   <td>
+    <h3>
+        <div id="scene1_title">Was New York able to flatten the curve?</div>
+    </h3>
+   </td>
+ </tr>
+ <tr>
+  <td>
+   <div id="scene1_info_top">
+  <p>Next chart displays 3 key metrics where we can see hif New York was able to switch from being the epicenter of the pandemic to be a city with the lowest rates in the country.</p>
+  <p>Start of the outbreak in New York = February 29, 2020 according to NYC Health Department.</p>
+  <p>Data displayed is from March to July - 2020</p>
+  </div>
+  </td>
+ </tr>
+ 
+ <tr>
+    <td><div id="area_chart1_title"></div></td>
+ </tr>
+ <tr>
+  <td>
+   <div id="scene1_next_page">
+  <button onclick="window.location.href='https://brindanath.github.io/tester2.html';">
+      Next Page
+    </button>
+   </div>
+   </td>
+ </tr>
+</tbody></table>
+</div>
+ </body></html>

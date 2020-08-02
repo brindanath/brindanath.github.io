@@ -1,0 +1,205 @@
+<html><head>
+<meta charset="utf-8">
+<title>THIS IS AMERICA</title>
+<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+<style>
+  
+div.tooltip { 
+    position: absolute;     
+    text-align: center;     
+    width: 60px;          
+    height: 28px;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: lightsteelblue; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;     
+}
+
+
+</style>
+</head>
+<body>
+
+<table>
+ <tbody><tr>
+  <td>
+    <h1>
+  <div id="title">THIS IS AMERICA</div>
+    </h1></td>
+   
+ </tr>
+ <tr>
+   <td>
+    <h3>
+        <div id="home_page">Average wages based on race and gender</div>
+    </h3>
+   </td>
+ </tr>
+
+ <tr>
+  <td>
+   <div id="home_page_info">
+  <p>Next chart displays 3 key metrics where we can see hif New York was able to switch from being the epicenter of the pandemic to be a city with the lowest rates in the country.</p>
+  <p>Start of the outbreak in New York = February 29, 2020 according to NYC Health Department.</p>
+  <p>Data displayed is from March to July - 2020</p>
+
+
+<br>
+<div>
+  <input type="radio" name="White_Men vs Black_Men"  value="tot_cases"  onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">White Male vs Black Male </label>
+  <input type="radio" name="covidtest" value="new_case" onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">New Covid Spread</label>
+  <input type="radio" name="covidtest" value="daily_trend"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
+  <input type="radio" name="covidtest" value="statewise"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
+  <br><br>
+  <input type="button" value="Total Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.location.href='https://brindanath.github.io/ind2.html';">
+  <input type="button" value="New Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.location.href='https://brindanath.github.io/ind2.html';">
+  <input type="button" value="7 Day Average Case Trend" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="update(&quot;Avg7day&quot;)">
+ </div>
+ <br>
+
+
+
+  </div>
+  </td>
+ </tr>
+ 
+ <tr>
+    <td><div id="area_chart1_title"></div></td>
+ </tr>
+ <tr>
+    <td><div id="display_chart_1"></div></td>
+ </tr>
+ <tr>
+  <td>
+   <div id="scene1_next_page">
+  <button onclick="window.location.href='https://brindanath.github.io/ind2.html';">
+      Next Page
+    </button>
+    <button onclick="changeColor('red');">
+      Next Page
+    </button>
+   </div>
+   </td>
+ </tr>
+</tbody></table>
+
+
+<script>
+
+
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60};
+var width = 1000 - margin.left - margin.right;
+var height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#display_chart_1")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+const data = d3.csv("https://raw.githubusercontent.com/brindanath/brindanath.github.io/master/me.csv",
+
+//format data
+function(d){
+    return { Year : +d.Year, Total_Men: +d.Total_Men, White_Men : +d.White_Men, Black_Men : +d.Black_Men, Black_Women : +d.Black_Women,  Total_Women : +d.Total_Women, White_Women : +d.White_Women }
+},
+
+function(data) {
+
+//setup X Scale
+var xScale = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.Year; }))
+      .range([ 0, width ]);
+
+//setup X Axis
+var xAxis = d3.axisBottom(xScale)
+    //.ticks(20)
+    .tickFormat(d3.format('d'))
+    .scale(xScale);
+
+//draw X axis
+svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+
+//setup Y Scale
+var yScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return Math.max(d.Total_Men,d.White_Men, d.Black_Men, d.Black_Women, d.Total_Women, d.White_Women); })])
+    .range([ height, 0 ]);
+
+//setup Y axis
+var yAxis = d3.axisLeft(yScale);
+
+//draw Y axis
+svg.append("g")
+     .call(yAxis);
+
+//*******************************
+//draw the lines
+//*******************************
+
+
+
+
+
+var t1 = svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "cyan")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.White_Men) })      
+)
+
+
+
+//line for HOSPITALIZED_COUNT
+svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "purple")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+      .x(function(d) { return xScale(d.Year) })
+      .y(function(d) { return yScale(d.Black_Men) })
+      
+)
+
+    
+
+
+    d3.select("svg")
+ .append("text")
+ .attr("x", 880)
+ .attr("y", 330)
+ .style("font-size", 14)
+ .style("font-family","Arial")
+ .style("font-weight",2)
+ .text("Case Count");
+
+ d3.select("svg")
+ .append("rect")
+ .attr("width", 15)
+ .attr("height", 8)
+ .attr("fill","#663300")
+ .attr("x",860)
+ .attr("y",22);
+
+
+})
+
+</script>
+
+
+</body></html>

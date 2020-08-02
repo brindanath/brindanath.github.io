@@ -27,7 +27,7 @@ div.tooltip {
  <tbody><tr>
   <td>
     <h1>
-	<div id="title">THIS IS AMERICA</div>
+  <div id="title">THIS IS AMERICA</div>
     </h1></td>
    
  </tr>
@@ -49,10 +49,10 @@ div.tooltip {
 
 <br>
 <div>
-  <input type="radio" name="White_Men vs Black_Men"  value="tot_cases"  onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">White Male vs Black Male </label>
-  <input type="radio" name="White_Women vs Black_Women" value="new_case" onclick="window.location.href='https://brindanath.github.io/page2.html';"><label style="font-family:calibri;font-size:16px">New Covid Spread</label>
-  <input type="radio" name="Men vs Women" value="daily_trend" onclick="window.location.href='https://brindanath.github.io/page3.html';"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
-  <input type="radio" name="All Races vs All Gender" value="statewise" onclick="window.location.href='https://brindanath.github.io/page4.html';"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
+  <input type="radio" name="White_Men vs Black_Men"    onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">White Male vs Black Male </label>
+  <input type="radio" name="White_Women vs Black_Women" onclick="window.location.href='https://brindanath.github.io/page2.html';"><label style="font-family:calibri;font-size:16px">White_Women vs Black_Women</label>
+  <input type="radio" name="Men vs Women"  onclick="window.location.href='https://brindanath.github.io/page3.html';"><label style="font-family:calibri;font-size:16px">Men vs Women</label>
+  <input type="radio" name="All Races vs All Gender"  onclick="window.location.href='https://brindanath.github.io/page4.html';"><label style="font-family:calibri;font-size:16px">All Races vs All Gender</label>
   <br><br>
   
  </div>
@@ -153,7 +153,7 @@ svg.append("g")
 var t1 = svg.append("path")
     .datum(data)
     .attr("fill", "none")
-    //.attr("stroke", "cyan")
+    //.attr("stroke", "red")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
       .x(function(d) { return xScale(d.Year) })
@@ -177,22 +177,6 @@ svg.append("path")
     
 
 
-    d3.select("svg")
- .append("text")
- .attr("x", 880)
- .attr("y", 330)
- .style("font-size", 14)
- .style("font-family","Arial")
- .style("font-weight",2)
- .text("Case Count");
-
- d3.select("svg")
- .append("rect")
- .attr("width", 15)
- .attr("height", 8)
- .attr("fill","#663300")
- .attr("x",860)
- .attr("y",330);
 
 
 })

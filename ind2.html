@@ -3,7 +3,23 @@
 <title>THIS IS AMERICA</title>
 <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
 
-<style></style>
+<style>
+  
+div.tooltip { 
+    position: absolute;     
+    text-align: center;     
+    width: 60px;          
+    height: 28px;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: lightsteelblue; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;     
+}
+
+
+</style>
 </head>
 <body>
 
@@ -11,24 +27,39 @@
  <tbody><tr>
   <td>
     <h1>
-	<div id="title">THIS IS AMERICA</div>
+  <div id="title">THIS IS AMERICA</div>
     </h1></td>
    
  </tr>
  <tr>
    <td>
     <h3>
-        <div id="home_page">Average wages based on race and gender</div>
+        <div id="home">Average wages based on race and gender</div>
     </h3>
    </td>
  </tr>
 
  <tr>
   <td>
-   <div id="home_page_info">
-  <p>Next chart displays 3 key metrics where we can see hif New York was able to switch from being the epicenter of the pandemic to be a city with the lowest rates in the country.</p>
-  <p>Start of the outbreak in New York = February 29, 2020 according to NYC Health Department.</p>
-  <p>Data displayed is from March to July - 2020</p>
+   <div id="home1">
+  <p>America is the land of the equality.</p>
+  <p>This dashboard will check just how equal Americans actually are.</p>
+  
+
+
+<br>
+<div>
+  <input type="radio" name="White_Men vs Black_Men"  value="tot_cases"  onclick="window.location.href='https://brindanath.github.io/index1.html';"><label style="font-family:calibri;font-size:16px">White Male vs Black Male </label>
+  <input type="radio" name="White_Women vs Black_Women" value="new_case" onclick="window.location.href='https://brindanath.github.io/page2.html';"><label style="font-family:calibri;font-size:16px">New Covid Spread</label>
+  <input type="radio" name="Men vs Women" value="daily_trend" onclick="window.location.href='https://brindanath.github.io/page3.html';"><label style="font-family:calibri;font-size:16px">Daily Trend of Cases</label>
+  <input type="radio" name="All Races vs All Gender" value="statewise" onclick="window.location.href='https://brindanath.github.io/page4.html';"><label style="font-family:calibri;font-size:16px">Trend in different US States</label>
+  <br><br>
+  
+ </div>
+ <br>
+
+
+
   </div>
   </td>
  </tr>
@@ -42,7 +73,7 @@
  <tr>
   <td>
    <div id="scene1_next_page">
-  <button onclick="window.location.href='https://brindanath.github.io/tester.html';">
+  <button onclick="window.location.href='https://brindanath.github.io/ind2.html';">
       Next Page
     </button>
     <button onclick="changeColor('red');">
@@ -126,7 +157,7 @@ var t1 = svg.append("path")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
       .x(function(d) { return xScale(d.Year) })
-      .y(function(d) { return yScale(d.White_Womne) })      
+      .y(function(d) { return yScale(d.White_Men) })      
 )
 
 
@@ -139,9 +170,11 @@ svg.append("path")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
       .x(function(d) { return xScale(d.Year) })
-      .y(function(d) { return yScale(d.Black_Women) })
+      .y(function(d) { return yScale(d.Black_Men) })
+      
 )
 
+    
 
 
     d3.select("svg")
@@ -159,7 +192,7 @@ svg.append("path")
  .attr("height", 8)
  .attr("fill","#663300")
  .attr("x",860)
- .attr("y",22);
+ .attr("y",330);
 
 
 })

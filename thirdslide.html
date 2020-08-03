@@ -25,20 +25,20 @@ div.tooltip {
 */
 .chart .legend {
   fill: black;
-  font: 14px sans-serif;
+  font: 24px sans-serif;
   text-anchor: start;
   font-size: 12px;
 }
 
 .chart text {
   fill: white;
-  font: 10px sans-serif;
+  font: 16px sans-serif;
   text-anchor: end;
 }
 
 .chart .label {
   fill: black;
-  font: 14px sans-serif;
+  font: 24px sans-serif;
   text-anchor: end;
 }
 
@@ -145,11 +145,11 @@ var data = {
 };
 
 var width       = 500,
-    wht        = 20,
-    groupHeight      = wht * data.series.length,
+    wht        = 35,
+    ht2      = wht * data.series.length,
     sets = 10,
     labs   = 300,
-    spaceForLegend   = 300;
+    extra   = 300;
 
 
 var data_mod = [];
@@ -178,7 +178,7 @@ var yAxis = d3.svg.axis()
 
 
 var chart = d3.select(".chart")
-    .attr("width", labs + width + spaceForLegend)
+    .attr("width", labs + width + extra)
     .attr("height", ht);
 
 
@@ -201,15 +201,15 @@ bar.append("text")
     .attr("x", function(d) { return x(d) - 3; })
     .attr("y", wht / 2)
     .attr("fill", "red")
-    .attr("dy", ".35em")
+    .attr("dy", ".55em")
     .text(function(d) { return d; });
 
 
 bar.append("text")
     .attr("class", "label")
     .attr("x", function(d) { return - 10; })
-    .attr("y", groupHeight / 2)
-    .attr("dy", ".35em")
+    .attr("y", ht2 / 2)
+    .attr("dy", ".55em")
     .text(function(d,i) {
       if (i % data.series.length === 0)
         return data.labels[Math.floor(i/data.series.length)];
@@ -222,8 +222,8 @@ chart.append("g")
       .call(yAxis);
 
 
-var box_size = 18,
-    space  = 4;
+var box_size = 35,
+    space  = 10;
 
 var legend = chart.selectAll('.legend')
     .data(data.series)
@@ -232,7 +232,7 @@ var legend = chart.selectAll('.legend')
     .attr('transform', function (d, i) {
         var height = box_size + space;
         var offset = -sets/2;
-        var horz = labs + width + 40 - box_size;
+        var horz = labs + width + 60 - box_size;
         var vert = i * height - offset;
         return 'translate(' + horz + ',' + vert + ')';
     });
@@ -247,6 +247,7 @@ legend.append('text')
     .attr('class', 'legend')
     .attr('x', box_size + space)
     .attr('y', box_size - space)
+    .style("font-size","16px")
     .text(function (d) { return d.label; });
 
 

@@ -18,6 +18,9 @@ div.tooltip {
     pointer-events: none;     
 }
 
+p.ex1 {
+  margin: 45px;
+}
 
 </style>
 </head>
@@ -30,20 +33,21 @@ div.tooltip {
   <div id="title">THIS IS AMERICA</div>
     </h1></td>
    
- </tr>
- <tr>
-   <td>
-    <h3>
-        <div id="home">Homeownership based on race and gender</div>
-    </h3>
-   </td>
- </tr>
+
 
  <tr>
   <td>
    <div id="home1">
-  <p>America is the land of the equality.</p>
-  <p>This dashboard will check just how equal Americans actually are.</p>
+  
+  <p></p>
+  <p class="ex1">White home ownership is almost double that of both Black and Hispanic home ownership. <br>
+
+<br>Home ownership is one of the means to raise intergenerational wealth. <br>
+
+<br>Unsurprisingly, the "median wealth of white households in 2016 ($162,800) was ten times higher than that of black households ($16,300) and eight times higher than that of Hispanic households ($21,400)." (Washington Post, February 28th 2019).<br>
+
+
+  <p>click a button below to explore.</p>
   
 
 
@@ -157,7 +161,7 @@ var t2 = svg.append("path")
 
 
 
-
+svg.append("path")
     .datum(data)
     .attr("fill", "none")
     .attr("stroke", "blue")
@@ -213,7 +217,34 @@ var t2 = svg.append("path")
  .attr("x",860)
  .attr("y",290);
 
+d3.select("svg")
+ .append("line")
+ .attr('x1', 965)
+ .attr('y1', 145)
+ .attr('x2', 965)
+ .attr("stroke-width", 2)
+ .attr('y2', 30)
+ .attr('stroke', 'green')
 
+d3.select("svg")
+ .append("line")
+ .attr('x1', 965)
+ .attr('y1', 95)
+ .attr('x2', 905)
+ .attr("stroke-width", 2)
+ .attr('y2', 95)
+ .attr('stroke', 'green')
+
+ d3.select("svg")
+ .append("text")
+ .attr("x", 730)
+ .attr("y", 95)
+ .attr('stroke', 'black')
+ .style("font-size", 16)
+ .style("font-family","Consolas")
+ .style("letter-spacing",2)
+ .style("font-weight",2)
+ .text("25.6% difference ");
 
 
 

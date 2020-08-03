@@ -1,0 +1,172 @@
+<html><head>
+<meta charset="utf-8">
+<title>THIS IS AMERICA</title>
+<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+<style>
+  
+div.tooltip { 
+    position: absolute;     
+    text-align: center;     
+    width: 60px;          
+    height: 28px;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: lightsteelblue; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;     
+}
+
+/*
+.chart rect {
+  fill: steelblue;
+}
+*/
+.chart .legend {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: start;
+  font-size: 12px;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.chart .label {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: end;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+</style>
+</head>
+<body>
+
+<table>
+ <tbody><tr>
+  <td>
+    <h1>
+  <div id="title">THIS IS AMERICA</div>
+    </h1></td>
+   
+ </tr>
+ <tr>
+   <td>
+    <h3>
+        <div id="home">Homeownership based on race and gender</div>
+    </h3>
+   </td>
+ </tr>
+
+ <tr>
+  <td>
+   <div id="home1">
+  <p>America is the land of the equality.</p>
+  <p>This dashboard will check just how equal Americans actually are.</p>
+  
+
+
+<br>
+<div>
+  
+  
+  <br><br>
+  
+ </div>
+ <br>
+
+<button onclick="window.location.href='https://brindanath.github.io/index1.html';">
+      Previous Page
+    </button>
+    <button onclick="window.location.href='https://brindanath.github.io/index1.html';">
+      Next Page
+    </button>
+
+  </div>
+  </td>
+ </tr>
+ 
+ <tr>
+    <td><div id="area_chart1_title"></div></td>
+ </tr>
+ <tr>
+    <td><div id="display_chart_1"></div></td>
+ </tr>
+ <tr>
+  <td>
+   <div id="scene1_next_page">
+ 
+   </div>
+   </td>
+ </tr>
+</tbody></table>
+<svg class="chart"></svg>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+ var w = 300,                        //width
+    h = 300,                            //height
+    r = 100,                            //radius
+    color = d3.scale.category20c();     //builtin range of colors
+
+    data = [{"label":"one", "value":20}, 
+            {"label":"two", "value":50}, 
+            {"label":"three", "value":30}];
+    
+    var vis = d3.select("#display_chart_1")
+        .append("svg:svg")              //create the SVG element inside the <body>
+        .data([data])                   //associate our data with the document
+            .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
+            .attr("height", h)
+        .append("svg:g")                //make a group to hold our pie chart
+            .attr("transform", "translate(" + r + "," + r + ")")    //move the center of the pie chart from 0, 0 to radius, radius
+
+    var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
+        .outerRadius(r);
+
+    var pie = d3.layout.pie()           //this will create arc data for us given a list of values
+        .value(function(d) { return d.value; });    //we must tell it out to access the value of each element in our data array
+
+    var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
+        .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
+        .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
+            .append("svg:g")                //create a group to hold each slice (we will have a <path> and a <text> element associated with each slice)
+                .attr("class", "slice");    //allow us to style things in the slices (like text)
+
+        arcs.append("svg:path")
+                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
+                .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+
+        arcs.append("svg:text")                                     //add a label to each slice
+                .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+                //we have to make sure to set these before calling arc.centroid
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+            })
+            .attr("text-anchor", "middle")                          //center the text on it's origin
+            .text(function(d, i) { return data[i].label; }); 
+
+
+
+</script>
+
+
+</body></html>

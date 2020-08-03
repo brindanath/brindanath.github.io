@@ -101,48 +101,44 @@ var svg = d3.select("#display_chart_1")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-//Read the data
+
 const data = d3.csv("https://raw.githubusercontent.com/brindanath/brindanath.github.io/master/me.csv",
 
-//format data
+
 function(d){
     return { Year : +d.Year, Total_Men: +d.Total_Men, White_Men : +d.White_Men, Black_Men : +d.Black_Men, Black_Women : +d.Black_Women,  Total_Women : +d.Total_Women, White_Women : +d.White_Women }
 },
 
 function(data) {
 
-//setup X Scale
 var xScale = d3.scaleTime()
       .domain(d3.extent(data, function(d) { return d.Year; }))
       .range([ 0, width ]);
 
-//setup X Axis
+
 var xAxis = d3.axisBottom(xScale)
     //.ticks(20)
     .tickFormat(d3.format('d'))
     .scale(xScale);
 
-//draw X axis
+
 svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis);
 
 
-//setup Y Scale
+
 var yScale = d3.scaleLinear()
     .domain([0, d3.max(data, function(d) { return Math.max(d.Total_Men,d.White_Men, d.Black_Men, d.Black_Women, d.Total_Women, d.White_Women); })])
     .range([ height, 0 ]);
 
-//setup Y axis
+
 var yAxis = d3.axisLeft(yScale);
 
-//draw Y axis
+
 svg.append("g")
      .call(yAxis);
 
-//*******************************
-//draw the lines
-//*******************************
 
 
 
@@ -160,7 +156,7 @@ var t1 = svg.append("path")
 
 
 
-//line for HOSPITALIZED_COUNT
+
 svg.append("path")
     .datum(data)
     .attr("fill", "none")

@@ -147,24 +147,24 @@ var width       = 500,
     labs   = 300,
     spaceForLegend   = 300;
 
-// Zip the series data together (first values, second values, etc.)
-var zippedData = [];
+
+var data_mod = [];
 for (var i=0; i<data.labels.length; i++) {
   for (var j=0; j<data.series.length; j++) {
-    zippedData.push(data.series[j].values[i]);
+    data_mod.push(data.series[j].values[i]);
   }
 }
 
-// Color scale
+
 var color = d3.scale.category20();
-var chartHeight = wht * zippedData.length + sets * data.labels.length;
+var ht = wht * data_mod.length + sets * data.labels.length;
 
 var x = d3.scale.linear()
-    .domain([0, d3.max(zippedData)])
+    .domain([0, d3.max(data_mod)])
     .range([0, width]);
 
 var y = d3.scale.linear()
-    .range([chartHeight + sets, 0]);
+    .range([ht + sets, 0]);
 
 var yAxis = d3.svg.axis()
     .scale(y)
@@ -175,11 +175,11 @@ var yAxis = d3.svg.axis()
 
 var chart = d3.select(".chart")
     .attr("width", labs + width + spaceForLegend)
-    .attr("height", chartHeight);
+    .attr("height", ht);
 
 
 var bar = chart.selectAll("g")
-    .data(zippedData)
+    .data(data_mod)
     .enter().append("g")
     .attr("transform", function(d, i) {
       return "translate(" + labs + "," + (i * wht + sets * (0.5 + Math.floor(i/data.series.length))) + ")";

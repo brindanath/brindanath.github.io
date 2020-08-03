@@ -89,12 +89,12 @@ div.tooltip {
 
 
 
-// set the dimensions and margins of the graph
+
 var margin = {top: 10, right: 30, bottom: 30, left: 60};
 var width = 1000 - margin.left - margin.right;
 var height = 400 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
+
 var svg = d3.select("#display_chart_1")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -103,48 +103,45 @@ var svg = d3.select("#display_chart_1")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-//Read the data
+
 const data = d3.csv("https://raw.githubusercontent.com/brindanath/brindanath.github.io/master/homeowner.csv",
 
-//format data
+
 function(d){
     return { Year : +d.Year, Total: +d.Total, White : +d.White, Black : +d.Black, Hispanic : +d.Hispanic}
 },
 
 function(data) {
 
-//setup X Scale
+
 var xScale = d3.scaleTime()
       .domain(d3.extent(data, function(d) { return d.Year; }))
       .range([ 0, width ]);
 
-//setup X Axis
+
 var xAxis = d3.axisBottom(xScale)
     //.ticks(20)
     .tickFormat(d3.format('d'))
     .scale(xScale);
 
-//draw X axis
+
 svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis);
 
 
-//setup Y Scale
+
 var yScale = d3.scaleLinear()
     .domain([0, d3.max(data, function(d) { return Math.max(d.Total, d.White, d.Black, d.Hispanic); })])
     .range([ height, 0 ]);
 
-//setup Y axis
+
 var yAxis = d3.axisLeft(yScale);
 
-//draw Y axis
+
 svg.append("g")
      .call(yAxis);
 
-//*******************************
-//draw the lines
-//*******************************
 
 
 
